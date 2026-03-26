@@ -1,0 +1,113 @@
+Config = {}
+
+Config.useModernUI = true               -- In March 2023 the jobs have passed huge rework, and the UI has been changed. Set it to false, to use OLD no longer supported UI.
+Config.splitReward = false              -- This option works only when useModernUI is false. If true, payout = (Config.OnePercentWorth * Progress) / PartyCount, if false then: (Config.OnePercentWorth * Progress)
+Config.UseTarget = false                -- Change it to true if you want to use a target system. All settings about the target system are under target.lua file.
+Config.UseBuiltInNotifications = true   -- Set to false if you want to use your framework notification style. Otherwise, built-in modern notifications will be used. Available only with modern UI
+Config.RequiredJob = "none"             -- Set to "none" if you don't want to require using jobs. If you are using target, you have to set "job" parameter inside every export in target.lua
+Config.RequireJobAlsoForFriends = true  -- If false, only host needs the job; if true, everybody from group needs the Config.RequiredJob
+Config.RequireOneFriendMinimum = false  -- Set to true to force players to create teams
+Config.OnePercentWorth = 75             -- 1% progress = $75, so 100% completion = $7,500
+
+Config.letBossSplitReward = true                    -- If true, boss can manage whole party rewards percent in menu. If false, everybody gets same amount. Available only in modern UI
+Config.multiplyRewardWhileWorkingInGroup = false   -- If false, reward stays default. If true, reward multiplies by number of players in group (baseReward * partyCount)
+
+Config.EnableVehicleTeleporting = true            -- If true, script teleports host to company vehicle. If false, squad must enter manually
+Config.JobVehicleModel = "17mov_BuilderCar"       -- Model of company car
+Config.PenaltyAmount = 500                        -- Penalty when player finishes work without company vehicle
+Config.DontPayRewardWithoutVehicle = false        -- Set to true to not pay players who finish without company vehicle
+Config.DeleteVehicleWithPenalty = false           -- Delete vehicle even if not company vehicle
+Config.MixerModel = "17mov_Mixer"                 -- Model of concrete mixer used for pouring concrete
+Config.PipeModel = "17mov_pipe"
+Config.PipeInstallingTime = 277000
+Config.WallBuildingTime = 277000
+Config.WeldingTime = 346250
+Config.wearingAnimation = { dict = "anim@heists@box_carry@", name = "idle"}
+Config.installingBlockToFrameScenario = "WORLD_HUMAN_HAMMERING"
+Config.JobCooldown = 10 * 60                       -- 10 minutes cooldown between making jobs
+Config.GiveKeysToAllLobby = true                  -- Set false to give keys only to group creator
+Config.EnableWaypoint = false                     -- Set true to enable waypoint for current job location
+
+Config.ProgressBarOffset = "25px"                 -- Value in px of counter offset on screen
+Config.ProgressBarAlign = "bottom-right"         -- Align of the progress bar
+-- Options: top-left, top-center, top-right, bottom-left, bottom-center, bottom-right
+
+-- Reward Items
+Config.RewardItemsToGive = {
+    {
+        item_name = "steel",                   -- first item in reward list
+        chance = 35,                            -- % chance to get this item
+        minimumProgressPercent = 25,           -- minimum job progress to get this item
+        amount = {25,40},                       -- min-max amount rewarded
+    },
+    {
+        item_name = "iron",                    -- second item in reward list
+        chance = 35,                            -- % chance to get this item
+        minimumProgressPercent = 25,           -- minimum job progress to get this item
+        amount = {20,35},                       -- min-max amount rewarded
+    },
+    {
+        item_name = "copper",                  -- third item in reward list
+        chance = 30,                            -- % chance to get this item
+        minimumProgressPercent = 25,           -- minimum job progress to get this item
+        amount = {15,25},                       -- min-max amount rewarded
+    },
+}
+
+Config.RequireFullJob = false                       -- Set true if players must have 100% progress to end job
+Config.RequireWorkClothes = false                   -- Set true to change players clothes when starting job
+Config.RequiredItem = "none"                        -- Set to require a specific item in inventory before starting job
+Config.RequireItemFromWholeTeam = true              -- If false, only host needs required item; if true, all team needs it
+
+Config.RestrictBlipToRequiredJob = false            -- Set true to hide job blip for players without RequiredJob. If RequiredJob = "none", this has no effect.
+Config.Blips = { -- Configure company blip
+    [1] = {
+        Sprite = 801,
+        Color = 69,
+        Scale = 0.8,
+        Pos = vector3(955.9565, -1490.4604, 30.1444),
+        Label = 'Builder Job'
+    },
+}
+
+Config.MarkerSettings = {   -- Used only when Config.UseTarget = false. Colors of marker
+    Active = {
+        r = 232,
+        g = 111,
+        b = 12,
+        a = 200,
+    },
+    UnActive = {
+        r = 176,
+        g = 36,
+        b = 11,
+        a = 200,
+    }
+}
+
+Config.ArrowMarkerColor = {
+    r = 194,
+    g = 194,
+    b = 194,
+    a = 200,
+}
+
+Config.Locations = {       -- Base job locations
+    DutyToggle = {
+        Coords = {
+            vector3(956.143372, -1492.064453, 30.967716), 
+        },
+        CurrentAction = 'open_dutyToggle',
+        CurrentActionMsg = 'Press ~INPUT_CONTEXT~ to ~y~start/finish~s~ work.',
+        type = 'duty',
+        scale = {x = 1.0, y = 1.0, z = 1.0}
+    },
+    FinishJob = {
+        Coords = {
+            vector3(954.751038, -1502.427979, 30.977715),
+        },
+        CurrentAction = 'finish_job',
+        CurrentActionMsg = 'Press ~INPUT_CONTEXT~ to ~y~end ~s~working.',
+        scale = {x = 3.0, y = 3.0, z = 3.0}
+    },
+}
