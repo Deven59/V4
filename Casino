@@ -1,0 +1,101 @@
+Config = {
+    -- Locale
+    Locale = "en", -- en
+
+    -- Map
+    ActiveMaps = {11}, -- list of enabled map types (see below for types)
+    ActiveMapAutoDetect = true, -- automatically detect and enable map types based on running resources
+    -- 1: UncleJust Casino / DlcIplLoader
+    -- 2: Gabz Casino
+    -- 3: NoPixel Casino
+    -- 4: k4mb1 casino
+    -- 5: GTA:O Interior (rcore_casino_interior)
+    -- 6: Underground Casino PALETO
+    -- 7: K4MB1 old enterable casino (casinointerior & casinoexterior)
+    -- 8: patoche_casino
+    -- 9: Clawles: Casino Los Santos
+    -- 10: Molo Casino
+    -- 11: Jurassic Jackpot Casino 
+    -- 12: Energy Atlantis Casino
+    -- 13: HG Designs: The Town Resort & Casino
+    -- 14: TStudio: Pearls Casino
+    -- 15: Molo Atlantis Casino
+    -- make sure rcore_casino_interior is disabled when using another map type, and don't forget to remove rcore_casino_interior from dependencies in fxmanifest.lua as well
+
+    --[[
+    Gabz Casino
+    • copy "\extra\gabz-casino\gabz_vw_vwdlc_int_01.ytyp" to "cfx-gabz-casino\stream\ytyp\"
+   
+    NoPixel Casino
+    • delete \stream\Main\ydr\vw_prop_vw_luckywheel_01a.ydr in NoPixel Casino
+    • copy "\extra\nopixel\gbz_vw_vwdlc_int_01.ytyp" inside stream\Main\ytyp in NoPixel Casino
+    • copy "\extra\nopixel\vw_vwint01_betting_desks.ydr" inside stream\Main\ydr in NoPixel Casino
+
+    K4MB1 old enterable casino
+    • copy "brown_casinoextended.ytyp" to "casinointerior\stream\base k4mb1-old-casino"
+    ]]
+
+    -- Xmas trees
+    -- • configurable in xmas\xmas_cl.lua and xmas\xmas_sv.lua
+    Xmas = false,
+
+    -- Target
+    UseTarget = true, -- whether to use target zones or not
+    TargetZoneType = 4, -- 1: q_target, 2: bt_target, 3: qb-target, 4: ox_target
+
+    -- Chips, Inventory Settings
+    UseVirtualChips = true, -- false: use inventory for chips, true: use virtual chips which are saved in the casino_players table
+    InventoryResource = Inventory.OX, -- name of the inventory resource, set to Inventory.Framework if you want to use frameworks' inventory functions
+    --[[
+    choose InventoryResource = Inventory.AutoChoose for auto choose, or choose between:
+    Inventory.Framework for built in inventory functions
+    Inventory.OX for ox_inventory
+    Inventory.LJ for lj_inventory
+    Inventory.MF for mf_inventory
+    Inventory.PS for ps_inventory
+    Inventory.QS for qs-inventory
+    Inventory.CodeM for codem-inventory
+    ]]
+    MoneyInventoryItemName = nil, -- name of the money inventory item, set to nil, if you don't want to use inventory item as the money
+    UseOnlyMoney = true, -- set to true if you want to play with money only, without casino chips
+    ExchangeRate = 5, -- set value of one casino chip, for example, set to 5, if 1 chip equals to 5$ (minimum: 0.1, rounded by 0.1, 0.5 or 1)
+    ChipsInventoryItem = "casino_chips",
+    UseBankMoney = false, -- cash or bank?
+    DailyWidthdrawLimit = 50000, -- how much money can player withdraw from the cashier per day (24 hours), set to 0 to disable
+
+    -- Behave in casino?
+    RestrictControls = true, -- don't jump, don't attack inside the Casino
+
+    -- Bar
+    BarShowSnacks = true, -- disable, if you want to see only drinks in the bartender menu
+
+    -- Inside Track
+    IT_STARTING_SOON_TIME = 0, -- *starting soon screen* duration; def: 0
+    IT_MAIN_EVENT_MIN_PLAYERS = 2, -- min. players needed for the main event to start; def: 2
+    IT_MAIN_EVENT_ENABLED = true, -- when false, the main event will be disabled, big screen will show only purple idle screen; def: true
+    IT_MAIN_EVENT_BETTING_TIME = 60 * 2, -- time for players to place bets for main event, shows horses on screen; def: 60 * 5 (5 minutes)
+    IT_MAIN_EVENT_RACE_DURATION = 33, -- length of the main event race; def: 33
+    IT_MAIN_EVENT_HORSE_ODDS = {2, 5, 6, 15, 16, 30}, -- limit max horse odds for local game (1 to 30), def: {1, 5, 6, 15, 16, 30}  (2 horses of odds from 1 to 5, 2 horses of odds from 6 to 15, 2 horses of odds from 16 to 30)
+    IT_MAIN_EVENT_RACE_MAX_BET = 2500, -- max. bet for the main event race
+    IT_MAIN_EVENT_RACE_MIN_BET = 100, -- min. bet for the main event race
+    IT_LOCAL_RACE_DURATION = 30, -- length of the local race (orange screen) def: 30
+    IT_LOCAL_RACE_HORSE_ODDS = {2, 5, 6, 15, 16, 30}, -- limit max horse odds for local game (1 to 30), def: {1, 5, 6, 15, 16, 30}  (2 horses of odds from 1 to 5, 2 horses of odds from 6 to 15, 2 horses of odds from 16 to 30)
+    IT_LOCAL_RACE_MAX_BET = 5000, -- max. bet for the local race
+    IT_LOCAL_RACE_MIN_BET = 100, -- min. bet for the local race
+    IT_LOCAL_RACE_COOLDOWN = 120, -- how long until they can play another local game, in seconds, (def: 60 * 10)
+    IT_MAIN_EVENT_COOLDOWN = 300, -- how long until they can play another main event game, in seconds, (def: 60 * 10)
+    -- Win chance of horses are based on their odds, however, if you want to make the game more unlucky, lower the win chance:
+    IT_LOCAL_RACE_WIN_CHANCE = 40, -- win chance (from 0 to 100), def: 100, 100 means that it's not *unlucky* at all
+    IT_MAIN_EVENT_RACE_WIN_CHANCE = 40, -- win chance (from 0 to 100), def: 100, 100 means that it's not *unlucky* at all
+
+    -- Roulette
+    ROULETTE_JUNIOR_ENABLED = true, -- set if you want to have Roulette Junior (blue) table for newbies (low stakes)
+    ROULETTE_JUNIOR_COORDS = {1004.790, 57.295, 68.432},
+
+    -- Slots
+    SLOTS_1ST_PERSON = true, -- switch to 1st person when spinning slots
+
+    -- Lucky Wheel
+    LUCKY_WHEEL_ENABLED = true, -- set to false, if you don't want to use Lucky Wheel
+    LUCKY_WHEEL_FREE_DRINKS_FOR = (60 * 60 * 24), -- when someone spins "Free Drinks" at the Lucky Wheel, how long they get free drinks for. def: 24 hours (60 * 60 * 24)
+... (291 lines left)
